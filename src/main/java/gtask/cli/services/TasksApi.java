@@ -25,7 +25,7 @@ public class TasksApi {
     private static final JacksonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
-    private static final List<String> SCOPES = Collections.singletonList(TasksScopes.TASKS_READONLY);
+    private static final List<String> SCOPES = Collections.singletonList(TasksScopes.TASKS);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
     /**

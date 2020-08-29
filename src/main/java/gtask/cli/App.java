@@ -8,11 +8,7 @@ import picocli.CommandLine.*;
 import java.util.concurrent.Callable;
 
 @Command(name = "gtask", mixinStandardHelpOptions = true, version = "gtask 0.1",
-        description = "Google Task Cli Tool.",
-        subcommands = {
-                ListsCommand.class,
-                TasksCommand.class
-        })
+        description = "Google Task Cli Tool.")
 public class App implements Callable<Integer> {
 
     @Option(names = {"-a", "--algorithm"}, description = "MD5, SHA-1, SHA-256, ...")
@@ -20,7 +16,11 @@ public class App implements Callable<Integer> {
 
 
     public static void main(String... args) {
-        int exitCode = new CommandLine(new App()).setExecutionStrategy(new CommandLine.RunAll()).execute(args);
+        CommandLine commandLine = new CommandLine(new App())
+                .setExecutionStrategy(new CommandLine.RunAll());
+        commandLine.addSubcommand("lists", ListsCommand.class);
+        commandLine.addSubcommand("tasks", TasksCommand.class);
+        int exitCode = commandLine.execute(args);
         System.exit(exitCode);
     }
 
